@@ -1,4 +1,6 @@
-express, cors, pg, jsonwebtoken, bcrypt
+# backend
+
+Tech used: express, cors, pg, jsonwebtoken, bcrypt
 
 use Routers for modularity
 
