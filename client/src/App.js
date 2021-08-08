@@ -1,4 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 import {
   BrowserRouter as Router,
@@ -13,6 +17,7 @@ import { Container } from "react-bootstrap";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+toast.configure()
 
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
@@ -20,6 +25,29 @@ function App() {
   const setAuth = boolean => {
     setisAuthenticated(boolean)
   }
+
+  //pass jwt token to middleware in backend to check if authorized
+  async function isAuth() {
+    try {
+      const response = await fetch('http://localhost:5000/auth/is-verify',{
+        method: 'GET',
+        headers: {token: localStorage.token}
+      });
+
+
+      const parseRes = await response.json()
+
+      // console.log(parseRes)
+
+      parseRes === true ? setisAuthenticated(true): setisAuthenticated(false)
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
+  useEffect (()=>{
+    isAuth()
+  })
 
   return (
     <Fragment>
