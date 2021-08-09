@@ -59,9 +59,9 @@ function App() {
               path="/"
               render={(props) =>
                 !isAuthenticated ? (
-                  <Redirect to="/dashboard" />
-                ) : (
                   <Redirect to="/login" />
+                ) : (
+                  <Redirect to="/dashboard" />
                 )
               }
             />
