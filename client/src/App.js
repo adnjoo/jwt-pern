@@ -45,6 +45,7 @@ function App() {
   }
 
   useEffect (()=>{
+    console.log(isAuthenticated)
     isAuth()
   })
 
@@ -53,6 +54,17 @@ function App() {
       <Router>
         <Container>
           <Switch>
+          <Route
+              exact
+              path="/"
+              render={(props) =>
+                !isAuthenticated ? (
+                  <Redirect to="/dashboard" />
+                ) : (
+                  <Redirect to="/login" />
+                )
+              }
+            />
             <Route
               exact
               path="/login"
