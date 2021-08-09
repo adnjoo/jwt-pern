@@ -3,7 +3,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-
 import {
   BrowserRouter as Router,
   Switch,
