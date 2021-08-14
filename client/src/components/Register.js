@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import {Link} from 'react-router-dom'
 
 import {toast} from 'react-toastify'
+import { backendURL } from "../sharedVariables";
 
 const Register = ({setAuth}) => {
   const [inputs, setInputs] = useState({
@@ -18,7 +19,7 @@ const Register = ({setAuth}) => {
       e.preventDefault()
       try {
         const body = {name, email, password}
-        const response = await fetch('http://localhost:5000/auth/register',{
+        const response = await fetch(`${backendURL}auth/register`,{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(body)

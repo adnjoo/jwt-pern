@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 import { toast } from "react-toastify";
+import { backendURL } from "../sharedVariables";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
@@ -9,7 +10,7 @@ const Dashboard = ({ setAuth }) => {
 
   async function getName() {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch(`${backendURL}dashboard/`, {
         method: "GET",
         headers: { token: localStorage.token },
       });
@@ -41,7 +42,7 @@ const Dashboard = ({ setAuth }) => {
       name: newName
     };
     // console.log("changeName", newName);
-    const response = await fetch("http://localhost:5000/dashboard/changeName", {
+    const response = await fetch(`${backendURL}dashboard/changeName`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
